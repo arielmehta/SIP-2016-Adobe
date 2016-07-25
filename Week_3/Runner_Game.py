@@ -51,18 +51,19 @@ middle_scroller.add_buildings()
 front_scroller.add_buildings()
 # ------- RUNNER SPRITE CLASSES-------- #
 class Runner_Sprite (pygame.sprite.Sprite):
-    def __init__(self, color, size, position):
+    def __init__(self, color, position, height, width):
         pygame.sprite.Sprite.__init__(self)
         self.color = color
-        self.size = size
-        self.image = pygame.Surface((40, 40))
-        self.image.fill(RED)
+        self.height = height
+        self.width = width 
+        self.image = pygame.Surface((self.width, self.height))
+        self.image.fill(self.color)
         self.position = position
         self.rect = self.image.get_rect(center = self.position)
 
     def update (self, speed):
         pygame.rect.move(100 + speed, 450)
-        if 
+        
 
 # -------- Main Program Loop -----------
 while not done:
@@ -83,14 +84,17 @@ while not done:
     
     screen.fill(GREY)
     mouse_pos = pygame.mouse.get_pos()
-
+    x= mouse_pos[0]
+    y= mouse_pos[1]
     # --- Drawing code should go here
     all_sprites_list = pygame.sprite.Group()
-    player_1 = Runner_Sprite(RED, 50, mouse_pos)
-    good_sprite = Runner_Sprite(GREEN, 50, (100,450))
+    player_1 = Runner_Sprite(BLUE, (x, 450), 40, 40)
+    good_sprite = Runner_Sprite(GREEN, (100,450), 30, 30)
+    
 
     all_sprites_list.add(player_1)
     all_sprites_list.add(good_sprite)
+    
 
     good_sprite.update(5)
     
